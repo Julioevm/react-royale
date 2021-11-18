@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import Event, { EventDesc } from "./Event";
+import React from "react";
+import { EventDesc } from "../engine/BREngine";
+import Event from "./Event";
 import "./EventLog.css";
 
-export default function EventLog() {
-	const ev1 = { key: 1, desc: "event 1" };
-	const ev2 = { key: 2, desc: "event 2" };
-	const [events, setEvents] = useState([ev1, ev2] as EventDesc[]);
+export default function EventLog(props: EventDesc[]) {
+	let events: EventDesc[] = props;
 
 	return (
 		<div className="eventLog">
