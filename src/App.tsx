@@ -2,12 +2,9 @@ import React from "react";
 import "./App.css";
 import EventLog from "./components/EventLog";
 import Header from "./components/Header";
-import { EventDesc, generateEvent } from "./engine/BREngine";
+import { EventDesc, generateRound } from "./engine/BREngine";
 
-const events: EventDesc[] = [];
-events.push(generateEvent());
-events.push(generateEvent());
-events.push(generateEvent());
+const events: EventDesc[] = generateRound(3);
 
 function App() {
 	return (

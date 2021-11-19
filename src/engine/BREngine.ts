@@ -3,6 +3,16 @@ export interface EventDesc {
 	desc: string;
 }
 
-export function generateEvent(): EventDesc {
-	return { key: 1, desc: "this is an event!" };
+export function generateRound(length: number): EventDesc[] {
+	let events: EventDesc[] = [];
+
+	for (let i = 1; i < length + 1; i++) {
+		events.push(generateEvent(i));
+	}
+	return events;
+}
+export function generateEvent(key: number): EventDesc {
+	let desc = "this is an event!";
+
+	return { key, desc };
 }
