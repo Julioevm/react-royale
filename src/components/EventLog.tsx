@@ -6,7 +6,7 @@ import "./EventLog.scss";
 export default function EventLog({ events }: { events: EventDesc[] }) {
 	return (
 		<div className="eventLog">
-			<h2>Events will be displayed here!</h2>
+			<h2>Event log</h2>
 			<div className="eventContainer">
 				{events.map((event) => (
 					<Event key={event.key} desc={event.desc} />

@@ -1,15 +1,24 @@
+@use "components/variables" as v;
+
 .App {
-	background-color: #282c34;
+	background-color: v.$background;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
-	color: white;
+	color: v.$text-color;
 }
 
-.App h1 {
-	font-size: 3em;
+.App {
+	h1 {
+		font-size: 3em;
+		text-shadow: 2px 2px 1px rgb(0 0 0 / 50%);
+	}
+
+	h2 {
+		font-size: 2em;
+	}
 }
 
 .App-link {
