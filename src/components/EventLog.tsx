@@ -3,9 +3,7 @@ import { EventDesc } from "../engine/BREngine";
 import Event from "./Event";
 import "./EventLog.css";
 
-export default function EventLog(props: EventDesc[]) {
-	let events: EventDesc[] = props;
-
+export default function EventLog({ events }: { events: EventDesc[] }) {
 	return (
 		<div className="eventLog">
 			<h2>Events will be displayed here!</h2>

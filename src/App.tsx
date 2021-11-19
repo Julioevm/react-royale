@@ -7,6 +7,7 @@ import { EventDesc, generateEvent } from "./engine/BREngine";
 const events: EventDesc[] = [];
 events.push(generateEvent());
 events.push(generateEvent());
+events.push(generateEvent());
 
 function App() {
 	return (
@@ -15,7 +16,7 @@ function App() {
 			<div>
 				<h2>Roster</h2>
 			</div>
-			<EventLog {...events} />
+			<EventLog events={events} />
 		</div>
 	);
 }
