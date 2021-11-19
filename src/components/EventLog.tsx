@@ -1,7 +1,7 @@
 import React from "react";
 import { EventDesc } from "../engine/BREngine";
 import Event from "./Event";
-import "./EventLog.css";
+import "./EventLog.scss";
 
 export default function EventLog({ events }: { events: EventDesc[] }) {
 	return (
