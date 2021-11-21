@@ -4,7 +4,7 @@ import "./Style.scss";
 
 export default function PlayerCard() {
 	return (
-		<div className="playerCard">
+		<div className="card card--player">
 			<img src={profile} alt="Player profile" width="70px" height="90px"></img>
 			<div className="playerCardInfo">
 				<div>Player Name</div>
