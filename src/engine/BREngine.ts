@@ -1,9 +1,15 @@
 export interface EventDesc {
-	key: number;
+	id: number;
 	desc: string;
 }
 
-export function generateRound(length: number): EventDesc[] {
+export interface Round {
+	id: number;
+	name: string;
+	events: EventDesc[];
+}
+
+export function generateRoundEvents(length: number): EventDesc[] {
 	let events: EventDesc[] = [];
 
 	for (let i = 1; i < length + 1; i++) {
@@ -11,8 +17,8 @@ export function generateRound(length: number): EventDesc[] {
 	}
 	return events;
 }
-export function generateEvent(key: number): EventDesc {
+export function generateEvent(id: number): EventDesc {
 	let desc = "this is an event!";
 
-	return { key, desc };
+	return { id, desc };
 }

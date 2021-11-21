@@ -1,0 +1,14 @@
+[{
+    "time": "day",
+    "filler_events": ["{player} travels across the island."],
+    "encounter_events": ["{player} sees {target} in the distance, he tracks him for a while but loses his track..."],
+    "accident_events": ["while traveling, {player} falls in a trap and springs his ankle!"],
+    "fatal_events": ["{player} runs from suspicious sounds, in the hurry he triggers a booby trap! The explosion ends his life."]
+},
+{
+    "time": "night",
+    "filler_events": ["{player} is tired. He finds a nice place to spend the night."],
+    "encounter_events": ["{player} sees a fireplace, he aproaches carefully to find {target} warming his hands."],
+    "accident_events": ["trying to get some rest. {player} is awakened by some rumbling sounds. He sneaks away to prevent an attack."],
+    "fatal_events": ["{player} is killed during his sleep."]
+}]
