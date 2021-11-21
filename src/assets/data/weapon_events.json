@@ -1,0 +1,14 @@
+{"types": [
+    {
+      "type": "automatic",
+      "deadly_events": 
+        ["{player} burst down {target} leaving his body full of bloody holes.",
+        "{target} is seen by {player}, whom points his {weapon} to and shots a controlled burst, killing him instantly."],
+      "damage_events": 
+        [
+        "{target} is seen by {player}, whom points his {weapon} at his general direction and pulls the trigger, a scream of pain is heard."],
+        "fail_events": 
+        [
+        "{target} is seen by {player}, whom points his {weapon} at his general direction and pulls the trigger, smoke and dust are everywhere but no bullet hit {target}"]
+    }
+]}
