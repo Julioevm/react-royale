@@ -1,3 +1,5 @@
+import { getRandomNumber } from "./Utils";
+
 export interface EventDesc {
 	id: number;
 	desc: string;
@@ -18,7 +20,11 @@ export function generateRoundEvents(length: number): EventDesc[] {
 	return events;
 }
 export function generateEvent(id: number): EventDesc {
-	let desc = "this is an event!";
+	const roll = getRandomNumber(100);
+	let desc;
+	if (roll > 70) desc = "A player has died!";
+	else if (roll > 30) desc = "A player is moving!";
+	else desc = "A player is resting...";
 
 	return { id, desc };
 }

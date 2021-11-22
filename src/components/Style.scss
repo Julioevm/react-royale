@@ -9,10 +9,10 @@
 
 .container {
 	background-color: darken(v.$background, 2%);
-	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 	padding: 0px 20px 20px 20px;
-    margin-bottom: 20px;
-    min-width: 300px;
+	margin-bottom: 20px;
+	min-width: 300px;
 }
 
 .container h2 {
@@ -33,24 +33,25 @@
 }
 
 .card--event {
-    min-height: 50px;
+	min-height: 50px;
 }
 
 .playerCardContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .card--player {
-    align-items: center;
-    text-align: center;
+	align-items: center;
+	text-align: center;
+	width: 100px;
 }
 
 .playerCardInfo {
-    .smaller {
-        font-size: smaller;
-    }
+	.smaller {
+		font-size: smaller;
+	}
 }
