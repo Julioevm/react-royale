@@ -1,15 +1,17 @@
-import { STATE_HEALTHY, getPlayers } from "../DAL/Player";
+import { STATE_HEALTHY, initializePlayers } from "../DAL/Player";
+
 describe("initializePlayers", () => {
 	const player = { key: "key", name: "name" };
 
-    jest.mock("../DAL/Player", () => ({
-        getPlayers: jest.fn(() => [player]),
-    }));
-    
 	it("should return an initialized array of player objects", () => {
-		const initializedPlayers = getPlayers();
+		const initializedPlayers = initializePlayers([player]);
 		expect(initializedPlayers).toEqual([
-			{ key: "key", name: "name", weapon: "None", state: STATE_HEALTHY },
+			{
+				key: "key",
+				name: "name",
+				weapon: "None",
+				state: STATE_HEALTHY,
+			},
 		]);
 	});
 });

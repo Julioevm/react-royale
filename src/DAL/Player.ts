@@ -19,16 +19,16 @@ export interface Player {
 	state: PlayerState;
 }
 
-function initializePlayers(players: Player[]): Player[] {
+export function initializePlayers(players: Partial<Player>[]): Player[] {
 	return players.map((player) => ({
 		...player,
 		weapon: "None",
 		state: STATE_HEALTHY,
-	}));
+	})) as Player[];
 }
 
 function loadPlayersJSON(): Player[] {
-    // Theres an issue if I pass the path as parameter.
+	// Theres an issue if I pass the path as parameter.
 	return require("../assets/data/roster.json");
 }
 
