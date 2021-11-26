@@ -26,7 +26,7 @@ export default function EventLog({
 							<Event {...event} />
 						))}
 					</div>
-				))}
+				)).reverse()}
 			</div>
 		</div>
 	);
