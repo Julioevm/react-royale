@@ -56,8 +56,12 @@
 	}
 }
 
+.logHeader {
+	display: flex;
+	justify-content: space-around;
+}
+
 .roundButton {
-	float: right;
 	border: none;
 	border-radius: 5px;
 	padding: 5px;
@@ -66,4 +70,14 @@
 	transition: 0.3s;
 	cursor: pointer;
 	color: v.$text-color;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.roundButton:hover {
+	background-color: lighten(v.$background, 2);
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.roundButton--active {
+	background-color: lighten(v.$background, 2);
 }

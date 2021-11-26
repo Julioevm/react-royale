@@ -12,21 +12,23 @@ export default function EventLog({
 }) {
 	return (
 		<div className="container">
-			<div>
+			<div className="logHeader">
 				<h2>Event log</h2>
 				<button className="roundButton" onClick={nextRound}>
 					Next Round!
 				</button>
 			</div>
 			<div className="eventContainer">
-				{rounds.map((round) => (
-					<div className="eventRound">
-						<h3> {round.name}</h3>
-						{round.events.map((event) => (
-							<Event {...event} />
-						))}
-					</div>
-				)).reverse()}
+				{rounds
+					.map((round) => (
+						<div className="eventRound">
+							<h3> {round.name}</h3>
+							{round.events.map((event) => (
+								<Event {...event} />
+							))}
+						</div>
+					))
+					.reverse()}
 			</div>
 		</div>
 	);
