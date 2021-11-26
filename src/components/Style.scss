@@ -55,3 +55,15 @@
 		font-size: smaller;
 	}
 }
+
+.roundButton {
+	float: right;
+	border: none;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 5px;
+	background-color: lighten(v.$background, 1);
+	transition: 0.3s;
+	cursor: pointer;
+	color: v.$text-color;
+}

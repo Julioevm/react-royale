@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import EventLog from "./components/EventLog";
 import Header from "./components/Header";
 import Roster from "./components/Roster";
-import { getPlayers } from "./DAL/Player";
-import { Round, generateRoundEvents } from "./engine/BREngine";
-
-const players = getPlayers();
-const rounds: Round[] = [
-	{ id: 0, name: "Day 1", events: generateRoundEvents(3) },
-];
+import { generateRound, startGame } from "./engine/BREngine";
 
 function App() {
+	const [round, setRound] = useState(2);
+	const [game, setGame] = useState(startGame());
+	const nextRound = () => {
+		game.rounds.push(generateRound(round));
+		const newRound = game;
+		setGame(newRound);
+		setRound(round + 1);
+	};
+	
 	return (
 		<div className="App">
 			<Header />
-			<Roster players={players} />
-			<EventLog rounds={rounds} />
+			<Roster players={game.players} />
+			<EventLog rounds={game.rounds} nextRound={nextRound} />
 		</div>
 	);
 }

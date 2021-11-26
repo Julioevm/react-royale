@@ -1,14 +1,23 @@
 import React from "react";
 import { Round } from "../engine/BREngine";
-import Button from "./Button";
 import Event from "./Event";
 import "./Style.scss";
 
-export default function EventLog({ rounds }: { rounds: Round[] }) {
+export default function EventLog({
+	rounds,
+	nextRound,
+}: {
+	rounds: Round[];
+	nextRound: () => void;
+}) {
 	return (
 		<div className="container">
-			<h2>Event log</h2>
-			<Button text="Next Round" onClick={() => {}} />
+			<div>
+				<h2>Event log</h2>
+				<button className="roundButton" onClick={nextRound}>
+					Next Round!
+				</button>
+			</div>
 			<div className="eventContainer">
 				{rounds.map((round) => (
 					<div className="eventRound">

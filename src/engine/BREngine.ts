@@ -1,3 +1,4 @@
+import { getPlayers, Player } from "../DAL/Player";
 import { getRandomNumber } from "./Utils";
 
 export interface EventDesc {
@@ -11,7 +12,12 @@ export interface Round {
 	events: EventDesc[];
 }
 
-export function generateRoundEvents(length: number): EventDesc[] {
+export interface Game {
+	players: Player[];
+	rounds: Round[];
+}
+
+function generateRoundEvents(length: number): EventDesc[] {
 	let events: EventDesc[] = [];
 
 	for (let i = 1; i < length + 1; i++) {
@@ -19,6 +25,7 @@ export function generateRoundEvents(length: number): EventDesc[] {
 	}
 	return events;
 }
+
 export function generateEvent(id: number): EventDesc {
 	const roll = getRandomNumber(100);
 	let desc;
@@ -27,4 +34,16 @@ export function generateEvent(id: number): EventDesc {
 	else desc = "A player is resting...";
 
 	return { id, desc };
+}
+
+export function generateRound(id: number): Round {
+	const events = generateRoundEvents(5);
+	return { id, name: `Day ${id}`, events };
+}
+
+export function startGame() {
+	return {
+		players: getPlayers(),
+		rounds: [generateRound(1)],
+	};
 }
