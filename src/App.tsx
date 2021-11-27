@@ -9,7 +9,7 @@ function App() {
 	const [round, setRound] = useState(2);
 	const [game, setGame] = useState(startGame());
 	const nextRound = () => {
-		game.rounds.push(generateRound(round));
+		game.rounds.push(generateRound(round, game.players));
 		const newRound = game;
 		setGame(newRound);
 		setRound(round + 1);

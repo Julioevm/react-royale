@@ -17,33 +17,34 @@ export interface Game {
 	rounds: Round[];
 }
 
-function generateRoundEvents(length: number): EventDesc[] {
+function generateRoundEvents(players: Player[]): EventDesc[] {
 	let events: EventDesc[] = [];
 
-	for (let i = 1; i < length + 1; i++) {
-		events.push(generateEvent(i));
+	for (let i = 1; i < players.length + 1; i++) {
+		events.push(generateEvent(i, players[i - 1]));
 	}
 	return events;
 }
 
-export function generateEvent(id: number): EventDesc {
+export function generateEvent(id: number, player: Player): EventDesc {
 	const roll = getRandomNumber(100);
 	let desc;
-	if (roll > 70) desc = "A player has died!";
-	else if (roll > 30) desc = "A player is moving!";
-	else desc = "A player is resting...";
+	if (roll > 70) desc = `${ player.name } has died!`;
+	else if (roll > 30) desc = `${ player.name } is moving!`;
+	else desc = `${ player.name } is resting...`;
 
 	return { id, desc };
 }
 
-export function generateRound(id: number): Round {
-	const events = generateRoundEvents(5);
+export function generateRound(id: number, players: Player[]): Round {
+	const events = generateRoundEvents(players);
 	return { id, name: `Day ${id}`, events };
 }
 
 export function startGame() {
+	const players = getPlayers();
 	return {
-		players: getPlayers(),
-		rounds: [generateRound(1)],
+		players: players,
+		rounds: [generateRound(1, players)],
 	};
 }

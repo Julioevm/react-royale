@@ -24,7 +24,7 @@ describe("<Roster >", () => {
 
 describe("<EventLog >", () => {
 	test("should render the title", () => {
-		render(<EventLog rounds={rounds} />);
+		render(<EventLog rounds={rounds} nextRound={function (): void {} } />);
 		const title = screen.getByText(/Event Log/i);
 		expect(title).toBeInTheDocument();
 	});

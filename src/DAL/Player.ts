@@ -32,7 +32,7 @@ function loadPlayersJSON(): Player[] {
 	return require("../assets/data/roster.json");
 }
 
-export function getPlayers() {
+export function getPlayers() : Player[] {
 	const players = loadPlayersJSON();
 	return initializePlayers(players);
 }
