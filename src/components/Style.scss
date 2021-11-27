@@ -61,23 +61,25 @@
 	justify-content: space-around;
 }
 
-.roundButton {
-	border: none;
-	border-radius: 5px;
-	padding: 5px;
-	margin: 5px;
-	background-color: lighten(v.$background, 1);
-	transition: 0.3s;
-	cursor: pointer;
-	color: v.$text-color;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
+//Button
+.pushable {
+    background: darken(v.$accent, 5);
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+  }
+  .front {
+    display: block;
+    padding: 12px 12px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    background: v.$accent;
+    color: white;
+    transform: translateY(-6px);
+  }
 
-.roundButton:hover {
-	background-color: lighten(v.$background, 2);
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.roundButton--active {
-	background-color: lighten(v.$background, 2);
-}
+  .pushable:active .front {
+    transform: translateY(-2px);
+  }

@@ -14,8 +14,8 @@ export default function EventLog({
 		<div className="container">
 			<div className="logHeader">
 				<h2>Event log</h2>
-				<button className="roundButton" onClick={nextRound}>
-					Next Round!
+				<button className="pushable" onClick={nextRound}>
+					<span className="front">Next Round!</span>
 				</button>
 			</div>
 			<div className="eventContainer">
