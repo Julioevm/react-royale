@@ -1,4 +1,3 @@
-import React from "react";
 import { EventDesc } from "../engine/BREngine";
 import "./Style.scss";
 

@@ -20,8 +20,8 @@ export interface Game {
 function generateRoundEvents(players: Player[]): EventDesc[] {
 	let events: EventDesc[] = [];
 
-	for (let i = 1; i < players.length + 1; i++) {
-		events.push(generateEvent(i, players[i - 1]));
+	for (let index = 1; index < players.length + 1; index++) {
+		events.push(generateEvent(index, players[index - 1]));
 	}
 	return events;
 }
