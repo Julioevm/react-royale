@@ -2,10 +2,10 @@ import React from "react";
 import { EventDesc } from "../engine/BREngine";
 import "./Style.scss";
 
-export default function Event(props: EventDesc) {
+export default function Event(event: EventDesc) {
 	return (
-		<div key={props.id} className="card card--event">
-			{props.desc}
+		<div key={event.id} className="card card--event">
+			{event.desc}
 		</div>
 	);
 }

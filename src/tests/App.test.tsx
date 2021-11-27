@@ -28,4 +28,20 @@ describe("<EventLog >", () => {
 		const title = screen.getByText(/Event Log/i);
 		expect(title).toBeInTheDocument();
 	});
+
+	test("should render the next round button", () => {
+		render(<EventLog rounds={rounds} nextRound={function (): void {}} />);
+		const button = screen.getByText(/Next Round/i);
+		expect(button).toBeInTheDocument();
+	});
+
+	describe("nextRound", () => {
+		test("should call the nextRound function", () => {
+			const nextRound = jest.fn();
+			render(<EventLog rounds={rounds} nextRound={nextRound} />);
+			const button = screen.getByText(/Next Round/i);
+			button.click();
+			expect(nextRound).toHaveBeenCalled();
+		});
+	});
 });
