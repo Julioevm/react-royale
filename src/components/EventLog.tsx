@@ -20,11 +20,13 @@ export default function EventLog({
 			</div>
 			<div className="eventContainer">
 				{rounds
-					.map((round) => (
-						<div className="eventRound">
+					.map((round, index) => (
+						<div key={index} className="eventRound">
 							<h3> {round.name}</h3>
-							{round.events.map((event) => (
-								<Event {...event} />
+							{round.events.map((event, index) => (
+								<div key={index}>
+									<Event {...event} />
+								</div>
 							))}
 						</div>
 					))

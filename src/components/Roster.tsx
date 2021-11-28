@@ -8,8 +8,10 @@ export default function Roster({ players }: { players: Player[] }) {
 		<div className="container">
 			<h2>Roster</h2>
 			<div className="playerCardContainer">
-				{players.map((player) => ( 
-					<PlayerCard {...player} />
+				{players.map((player) => (
+					<div key={player.key}>
+						<PlayerCard {...player} />{" "}
+					</div>
 				))}
 			</div>
 		</div>
