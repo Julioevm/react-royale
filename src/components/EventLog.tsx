@@ -12,12 +12,10 @@ export default function EventLog({
 }) {
 	return (
 		<div className="container">
-			<div className="logHeader">
-				<h2>Event log</h2>
-				<button className="pushable" onClick={nextRound}>
-					<span className="front">Next Round!</span>
-				</button>
-			</div>
+			<h2>Event log</h2>
+			<button className="center pushable" onClick={nextRound}>
+				<span className="front">Next Round!</span>
+			</button>
 			<div className="eventContainer">
 				{rounds
 					.map((round, index) => (
