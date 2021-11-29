@@ -1,4 +1,4 @@
-import { STATE_HEALTHY, initializePlayers } from "../DAL/Player";
+import { STATE_HEALTHY, initializePlayers, WEAPON_FISTS } from "../DAL/Player";
 
 describe("initializePlayers", () => {
 	const player = { key: "key", name: "name" };
@@ -9,7 +9,7 @@ describe("initializePlayers", () => {
 			{
 				key: "key",
 				name: "name",
-				weapon: "None",
+				weapon: WEAPON_FISTS,
 				state: STATE_HEALTHY,
 			},
 		]);

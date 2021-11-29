@@ -12,17 +12,31 @@ export const STATE_HEALTHY: PlayerState = {
 	style: { color: "green" },
 };
 
+export const WEAPON_FISTS: Weapon = {
+	key: "fists",
+	name: "Fists",
+	value: 0,
+	types: ["hth"],
+};
+
+export interface Weapon {
+	key: string;
+	name: string;
+	value: number;
+	types: string[];
+}
+
 export interface Player {
 	key: string;
 	name: string;
-	weapon: string;
+	weapon: Weapon;
 	state: PlayerState;
 }
 
 export function initializePlayers(players: Partial<Player>[]): Player[] {
 	return players.map((player) => ({
 		...player,
-		weapon: "None",
+		weapon: WEAPON_FISTS,
 		state: STATE_HEALTHY,
 	})) as Player[];
 }
@@ -32,7 +46,7 @@ function loadPlayersJSON(): Player[] {
 	return require("../assets/data/roster.json");
 }
 
-export function getPlayers() : Player[] {
+export function getPlayers(): Player[] {
 	const players = loadPlayersJSON();
 	return initializePlayers(players);
 }
