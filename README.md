@@ -2,6 +2,7 @@
 
 ![Test](https://github.com/julioevm/react-royale/actions/workflows/test.yml/badge.svg)
 
+https://react-royale.herokuapp.com/
 
 This is a react based client-side application that simulates a 'battle royale' type game.
 
@@ -25,3 +26,9 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+## Deployment
+
+We're using [Heroku](https://react-royale.herokuapp.com/) for the deployment and hosting of the app.
+
+Since it doesn't support PNPM I will still provide a yarn.lock file.
