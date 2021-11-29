@@ -2,7 +2,7 @@ import { getPlayers, Player } from "../DAL/Player";
 import { getRandomNumber } from "./Utils";
 
 export interface EventDesc {
-	id: number;
+	id: string;
 	desc: string;
 }
 
@@ -20,19 +20,22 @@ export interface Game {
 function generateRoundEvents(players: Player[]): EventDesc[] {
 	let events: EventDesc[] = [];
 
-	for (let index = 1; index < players.length + 1; index++) {
-		events.push(generateEvent(index, players[index - 1]));
+	for (const player of players) {
+
+		events.push(generateEvent(player));
 	}
+	
 	return events;
 }
 
-export function generateEvent(id: number, player: Player): EventDesc {
+export function generateEvent( player: Player): EventDesc {
 	const roll = getRandomNumber(100);
 	let desc;
 	if (roll > 70) desc = `${ player.name } has died!`;
 	else if (roll > 30) desc = `${ player.name } is moving!`;
 	else desc = `${ player.name } is resting...`;
 
+	const id = player.key + new Date().getTime();
 	return { id, desc };
 }
 

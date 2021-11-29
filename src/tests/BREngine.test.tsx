@@ -4,7 +4,7 @@ import player from "./__fixtures__/player";
 
 const players: Player[] = [player, player];
 describe("generateEvent", () => {
-	const event: EventDesc = generateEvent(1, player);
+	const event: EventDesc = generateEvent(player);
 	it("should have a id", () => {
 		expect(event.id.toString()).toMatch("1");
 	});
