@@ -1,5 +1,8 @@
 # React Royale
 
+![Test](https://github.com/julioevm/react-royale/actions/workflows/test.yml/badge.svg)
+
+
 This is a react based client-side application that simulates a 'battle royale' type game.
 
 The idea is to provide the ability to configure files to set up custom player rosters and events, items, etc.
