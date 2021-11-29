@@ -1,10 +1,10 @@
 import { Player } from "../DAL/Player";
-import { generateEvent, EventDesc, generateRound } from "../engine/BREngine";
+import { generateIdleEvent, EventDesc, generateRound } from "../engine/BREngine";
 import player from "./__fixtures__/player";
 
 const players: Player[] = [player, player];
 describe("generateEvent", () => {
-	const event: EventDesc = generateEvent(player);
+	const event: EventDesc = generateIdleEvent(player);
 	it("should have a id", () => {
 		expect(event.id.toString()).toMatch("1");
 	});
