@@ -1,6 +1,6 @@
 import { Player } from "../DAL/Player";
 import { getRandomNumber, rollChance } from "./Utils";
-import { generateFightEvent } from "./Combat";
+import { generateFightEvent, generateFightRoll } from "./Combat";
 
 export interface EventDesc {
 	id: string;
@@ -31,7 +31,8 @@ function generateEngagementEvents(players: Player[]): EventDesc[] {
 
 		events.push(event);
 
-		events.push(generateFightEvent(player1, player2));
+        const combatRoll = generateFightRoll(player1, player2);
+		events.push(generateFightEvent(combatRoll, player1, player2));
 	}
 
 	return events;
