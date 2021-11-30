@@ -3,7 +3,7 @@ import "./App.scss";
 import EventLog from "./components/EventLog";
 import Header from "./components/Header";
 import Roster from "./components/Roster";
-import { generateRound, startGame } from "./engine/BREngine";
+import { generateRound, startGame } from "./engine/Round";
 
 function App() {
 	const [round, setRound] = useState(2);

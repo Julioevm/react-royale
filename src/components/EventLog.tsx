@@ -1,5 +1,5 @@
 import React from "react";
-import { Round } from "../engine/BREngine";
+import { Round } from "../engine/Round";
 import Event from "./Event";
 import "./Style.scss";
 
