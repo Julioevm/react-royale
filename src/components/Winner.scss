@@ -1,0 +1,65 @@
+@use "variables" as v;
+
+.modal {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-card-container {
+	perspective: 40em;
+}
+
+.modal-card {
+	--bi: radial-gradient(ellipse at center, #446bb3 0%, #000000 90%);
+	position: relative;
+	width: 320px;
+	height: 320px;
+	padding: 3em;
+	color: v.$text-color;
+	transform: rotateY(30deg) rotateX(15deg);
+	transform-style: preserve-3d;
+	transition: transform 1s;
+
+	&:hover {
+		transform: rotateY(-30deg) rotateX(-15deg);
+	}
+}
+
+.layers {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	z-index: -1;
+}
+
+.layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 1em;
+	background-image: var(--bi);
+	transform: translateZ(var(--tz));
+	box-shadow: 0 0 0.5em #000d inset;
+
+	@for $i from 0 to 10 {
+		&:nth-child(#{$i + 1}) {
+			--tz: #{$i * -4}px;
+		}
+	}
+
+	&:last-child {
+		box-shadow: 0 0 0.5em #000d inset, 0 0 5px #000;
+	}
+}

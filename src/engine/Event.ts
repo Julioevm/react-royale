@@ -8,7 +8,7 @@ export interface EventDesc {
 	desc: string;
 }
 //TODO: Extract to a config file.
-const CombatChance = 30;
+const CombatChance = 60;
 
 function getEngagements(players: Player[]) {
 	let engagedPlayers: Player[] = [];
