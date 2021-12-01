@@ -1,14 +1,42 @@
 [
-    {
-        "key": "dutch",
-        "name": "Dutch"
-    },
-    {
-        "key": "snake",
-        "name": "Snake Pliskin"
-    },
-    {
-        "key": "rambo",
-        "name": "John Rambo"
-    }
+	{
+		"key": "dutch",
+		"name": "Dutch"
+	},
+	{
+		"key": "snake",
+		"name": "Snake Pliskin"
+	},
+	{
+		"key": "rambo",
+		"name": "John Rambo"
+	},
+	{
+		"key": "billy",
+		"name": "Billy Herrington"
+	},
+	{
+		"key": "ripley",
+		"name": "Ripley"
+	},
+	{
+		"key": "neo",
+		"name": "Neo"
+	},
+	{
+		"key": "burton",
+		"name": "Jack Burton"
+	},
+	{
+		"key": "mcclane",
+		"name": "John McClane"
+	},
+	{
+		"key": "indi",
+		"name": "Indiana Jones"
+	},
+	{
+		"key": "robocop",
+		"name": "Robocop"
+	}
 ]
