@@ -7,14 +7,15 @@ export interface Round {
 	events: EventDesc[];
 }
 
-export interface Game {
+export interface GameRound {
 	players: Player[];
-	rounds: Round[];
+	round: Round;
 }
 
-export function generateRound(id: number, players: Player[]): Round {
+export function generateRound(id: number, players: Player[]): GameRound {
 	const events = generateRoundEvents(players);
-	return { id, name: `Day ${id}`, events };
+	const round = { id, name: `Day ${id}`, events };
+	return {players, round}
 }
 
 export function startGame() {

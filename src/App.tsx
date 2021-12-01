@@ -3,23 +3,27 @@ import "./App.scss";
 import EventLog from "./components/EventLog";
 import Header from "./components/Header";
 import Roster from "./components/Roster";
-import { generateRound, startGame } from "./engine/Round";
+import { getPlayers } from "./DAL/Player";
+import { generateRound, Round } from "./engine/Round";
 
 function App() {
-	const [round, setRound] = useState(2);
-	const [game, setGame] = useState(startGame());
+	const [currentRound, setCurrentRound] = useState(1);
+	const [players, setPlayers] = useState(getPlayers());
+	const [rounds, setRounds] = useState([] as Round[]);
 	const nextRound = () => {
-		game.rounds.push(generateRound(round, game.players));
-		const newRound = game;
-		setGame(newRound);
-		setRound(round + 1);
+		const newGameRound = generateRound(currentRound,players);
+
+		const newRounds = [...rounds, newGameRound.round];
+		setRounds(newRounds);
+		setPlayers(newGameRound.players);
+		setCurrentRound(currentRound + 1);
 	};
 	
 	return (
 		<div className="App">
 			<Header />
-			<Roster players={game.players} />
-			<EventLog rounds={game.rounds} nextRound={nextRound} />
+			<Roster players={players} />
+			<EventLog rounds={rounds} nextRound={nextRound} />
 		</div>
 	);
 }

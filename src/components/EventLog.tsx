@@ -10,11 +10,12 @@ export default function EventLog({
 	rounds: Round[];
 	nextRound: () => void;
 }) {
+	const buttonText = rounds.length === 0 ? "Start Game" : "Next Round!";
 	return (
 		<div className="container">
 			<h2>Event log</h2>
-			<button className="center pushable" onClick={nextRound}>
-				<span className="front">Next Round!</span>
+			<button className="center pushable" onClick={nextRound} data-testid="round-button">
+				<span className="front">{buttonText}</span>
 			</button>
 			<div className="eventContainer">
 				{rounds

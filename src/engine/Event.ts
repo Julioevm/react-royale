@@ -1,18 +1,22 @@
+import { STATE_DEAD } from "./../DAL/Player";
 import { Player } from "../DAL/Player";
 import { getRandomNumber, rollChance } from "./Utils";
-import { generateFightEvent, generateFightRoll } from "./Combat";
+import { CombatRoll, generateFightEvent, generateFightRoll } from "./Combat";
 
 export interface EventDesc {
 	id: string;
 	desc: string;
 }
+//TODO: Extract to a config file.
+const CombatChance = 30;
 
 function getEngagements(players: Player[]) {
 	let engagedPlayers: Player[] = [];
 	for (const player of players) {
-		if (rollChance(30)) engagedPlayers.push(player);
+		if (rollChance(CombatChance)) engagedPlayers.push(player);
 	}
 
+	// If the list is odd, skip the last player.
 	if (engagedPlayers.length % 2 > 0) engagedPlayers.pop();
 	return engagedPlayers;
 }
@@ -31,8 +35,12 @@ function generateEngagementEvents(players: Player[]): EventDesc[] {
 
 		events.push(event);
 
-        const combatRoll = generateFightRoll(player1, player2);
+		const combatRoll = generateFightRoll(player1, player2);
 		events.push(generateFightEvent(combatRoll, player1, player2));
+
+		if (combatRoll === CombatRoll.Kill) {
+			player2.state = STATE_DEAD;
+		}
 	}
 
 	return events;
@@ -51,12 +59,12 @@ export function generateIdleEvent(player: Player): EventDesc {
 
 export function generateRoundEvents(players: Player[]): EventDesc[] {
 	let events: EventDesc[] = [];
-
-	const engagedPlayers = getEngagements(players);
+	const livePlayers = players.filter((player) => player.state !== STATE_DEAD);
+	const engagedPlayers = getEngagements(livePlayers);
 
 	events = generateEngagementEvents(engagedPlayers);
 
-	const unEngagedPlayers = players.filter(
+	const unEngagedPlayers = livePlayers.filter(
 		(player) =>
 			!engagedPlayers.some((engagedPlayer) => player.key === engagedPlayer.key)
 	);

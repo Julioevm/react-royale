@@ -7,28 +7,41 @@ export interface RollThreshold {
 	playerThreshold: number;
 }
 
+export enum CombatRoll {
+	Kill,
+	Wound,
+	Miss,
+}
+
 export function generateFightRoll(
 	player1: Player,
 	player2: Player
-): RollThreshold {
+): CombatRoll {
 	const hthCombat = player1.weapon.value + player2.weapon.value === 0;
 	const playerThreshold = hthCombat
 		? getRandomNumber(50)
 		: getRandomNumber(player1.weapon.value);
 	const playerRoll = getRandomNumber(100) + player1.state.bonus;
 
-	return { playerRoll, playerThreshold };
+	if (playerRoll < playerThreshold) {
+		return CombatRoll.Kill;
+	} else if (playerRoll <= playerThreshold + 10) {
+		return CombatRoll.Wound;
+	} else {
+		return CombatRoll.Miss;
+	}
 }
+
 export function generateFightEvent(
-	roll: RollThreshold,
+	roll: CombatRoll,
 	player1: Player,
 	player2: Player
 ): EventDesc {
 	let desc;
 
-	if (roll.playerRoll < roll.playerThreshold) {
+	if (roll === CombatRoll.Kill) {
 		desc = `${player1.name} wins!`;
-	} else if (roll.playerRoll <= roll.playerThreshold + 10) {
+	} else if (roll === CombatRoll.Wound) {
 		desc = `${player1.name} wounds ${player2.name}!`;
 	} else {
 		desc = `${player1.name} misses ${player2.name}!`;

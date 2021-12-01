@@ -12,6 +12,12 @@ export const STATE_HEALTHY: PlayerState = {
 	style: { color: "green" },
 };
 
+export const STATE_DEAD: PlayerState = {
+	name: "Dead",
+	bonus: 0,
+	style: { color: "red" },
+};
+
 export const WEAPON_FISTS: Weapon = {
 	key: "fists",
 	name: "Fists",
