@@ -1,8 +1,5 @@
-import { Player } from "../DAL/Player";
 import { generateRound } from "../engine/Round";
-import player from "./__fixtures__/player";
-
-const players: Player[] = [player, player];
+import players from "./__fixtures__/players";
 
 describe("generateRound", () => {
 	const round = generateRound(1, players);
@@ -12,6 +9,6 @@ describe("generateRound", () => {
 
 	it("should return a list of players", () => {
 		expect(round.players).toBeTruthy();
-		expect(round.players.length).toBe(2);
+		expect(round.players.length).toBe(players.length);
 	});
 });

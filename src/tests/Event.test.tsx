@@ -1,8 +1,8 @@
 import { generateIdleEvent, EventDesc } from "../engine/Event";
-import player from "./__fixtures__/player";
+import { player1 } from "./__fixtures__/players";
 
 describe("generateEvent", () => {
-	const event: EventDesc = generateIdleEvent(player);
+	const event: EventDesc = generateIdleEvent(player1);
 	it("should have a id", () => {
 		expect(event.id.toString()).toMatch("1");
 	});
@@ -11,6 +11,6 @@ describe("generateEvent", () => {
 	});
 
 	it("should include the players name", () => {
-		expect(event.desc).toContain(player.name);
+		expect(event.desc).toContain(player1.name);
 	});
 });

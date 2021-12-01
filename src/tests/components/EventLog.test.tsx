@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import EventLog from "../../components/EventLog";
 import { rounds } from "../__fixtures__/rounds";
 
-const ROUND_BUTTON = "round-button";
 describe("<EventLog >", () => {
 	it("should render the title", () => {
 		render(<EventLog rounds={rounds} action={function (): void {}} buttonText={"next round"} />);
