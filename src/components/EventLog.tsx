@@ -5,17 +5,22 @@ import "./Style.scss";
 
 export default function EventLog({
 	rounds,
-	nextRound,
+	buttonText: text,
+	action: nextRound,
 }: {
 	rounds: Round[];
-	nextRound: () => void;
+	buttonText: string;
+	action: () => void;
 }) {
-	const buttonText = rounds.length === 0 ? "Start Game" : "Next Round!";
 	return (
 		<div className="container">
 			<h2>Event log</h2>
-			<button className="center pushable" onClick={nextRound} data-testid="round-button">
-				<span className="front">{buttonText}</span>
+			<button
+				className="center pushable"
+				onClick={nextRound}
+				data-testid="round-button"
+			>
+				<span className="front">{text}</span>
 			</button>
 			<div className="eventContainer">
 				{rounds

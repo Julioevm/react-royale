@@ -11,8 +11,17 @@ function App() {
 	const [currentRound, setCurrentRound] = useState(1);
 	const [players, setPlayers] = useState(getPlayers());
 	const [rounds, setRounds] = useState([] as Round[]);
-	const [winner, setWinner] = useState<Player>();
+	const [winner, setWinner] = useState<Player | undefined>(undefined);
 	const [show, setShow] = useState(false);
+	const buttonText = () => {
+		if (winner) {
+			return "Play Again";
+		} else if (rounds.length === 0) {
+			return "Start Game";
+		} else {
+			return "Next Round!";
+		}
+	};
 
 	const nextRound = () => {
 		const newGameRound = generateRound(currentRound, players);
@@ -28,11 +37,31 @@ function App() {
 		}
 	};
 
+	const restart = () => {
+		setPlayers(getPlayers());
+		setCurrentRound(1);
+		setRounds([]);
+		setWinner(undefined);
+		setShow(false);
+	};
+
+	const buttonAction = () => {
+		if (winner) {
+			return restart;
+		} else {
+			return nextRound;
+		}
+	};
+
 	return (
 		<div className="App">
 			<Header />
 			<Roster players={players} />
-			<EventLog rounds={rounds} nextRound={nextRound} />
+			<EventLog
+				rounds={rounds}
+				action={buttonAction()}
+				buttonText={buttonText()}
+			/>
 			<Winner winner={winner} onClose={() => setShow(false)} show={show} />
 		</div>
 	);
