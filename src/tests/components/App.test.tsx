@@ -23,10 +23,17 @@ describe("App", () => {
 		(getPlayers as jest.Mock).mockReturnValue([player1, deadPlayer]);
 		render(<App />);
 		const Button = screen.getByTestId(ROUND_BUTTON);
-		// simulate click on button
 		fireEvent.click(Button);
 		const playAgainButton = screen.getByText(/play again/i);
 		expect(playAgainButton).toBeInTheDocument();
+	});
+
+	test("renders the winner modal card if theres a winner", () => {
+		(getPlayers as jest.Mock).mockReturnValue([player1, deadPlayer]);
+		render(<App />);
+		const Button = screen.getByTestId(ROUND_BUTTON);
+		fireEvent.click(Button);
+		expect(screen.getByTestId("modal-card")).toBeVisible();
 	});
 
 	describe("<Roster >", () => {

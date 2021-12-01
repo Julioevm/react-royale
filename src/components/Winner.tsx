@@ -17,7 +17,7 @@ export default function Winner(props: {
 				className="modal-card-container"
 				onClick={(e) => e.stopPropagation()}
 			>
-				<div className="modal-card">
+				<div className="modal-card" data-testid={"modal-card"}>
 					<h1>Winner!</h1>
 					<div>{props.winner?.name}</div>
 					<div>{props.winner?.state.name}</div>
