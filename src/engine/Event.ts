@@ -7,13 +7,27 @@ export interface EventDesc {
 	id: string;
 	desc: string;
 }
+
 //TODO: Extract to a config file.
-const CombatChance = 60;
+enum EngagementChance {
+	Low = 25,
+	Medium = 50,
+	High = 75,
+	Extreme = 90,
+}
+
+function getEngagementChance(playerCount: number): number {
+	if (playerCount < 3) return EngagementChance.Extreme;
+	if (playerCount < 10) return EngagementChance.High;
+	if (playerCount < 20) return EngagementChance.Medium;
+	return EngagementChance.Low;
+}
 
 function getEngagements(players: Player[]) {
 	let engagedPlayers: Player[] = [];
 	for (const player of players) {
-		if (rollChance(CombatChance)) engagedPlayers.push(player);
+		if (rollChance(getEngagementChance(players.length)))
+			engagedPlayers.push(player);
 	}
 
 	// If the list is odd, skip the last player.
