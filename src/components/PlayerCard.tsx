@@ -6,7 +6,7 @@ import "./Style.scss";
 export default function PlayerCard(player: Player) {
 	return (
 		<div className="card card--player">
-			<img src={profile} alt="Player profile"></img>
+			<img src={player.image || profile} alt="Player profile"></img>
 			<div className="playerCardInfo">
 				<div>{player.name}</div>
 				<div className="smaller playerWeapon">{player.weapon.name}</div>

@@ -1,7 +1,8 @@
 [
 	{
 		"key": "dutch",
-		"name": "Dutch"
+		"name": "Dutch",
+		"image": "https://iili.io/5bTFQs.md.jpg"
 	},
 	{
 		"key": "snake",
@@ -29,7 +30,8 @@
 	},
 	{
 		"key": "mcclane",
-		"name": "John McClane"
+		"name": "John McClane",
+		"image": "https://iili.io/5buJKx.md.webp"
 	},
 	{
 		"key": "indi",
@@ -37,6 +39,7 @@
 	},
 	{
 		"key": "robocop",
-		"name": "Robocop"
+		"name": "Robocop",
+		"image": "https://iili.io/5bTv9I.md.webp"
 	}
 ]

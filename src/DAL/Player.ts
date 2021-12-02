@@ -37,6 +37,7 @@ export interface Player {
 	name: string;
 	weapon: Weapon;
 	state: PlayerState;
+	image?: string;
 }
 
 export function initializePlayers(players: Partial<Player>[]): Player[] {
