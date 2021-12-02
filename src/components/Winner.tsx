@@ -19,6 +19,7 @@ export default function Winner(props: {
 			>
 				<div className="modal-card" data-testid={"modal-card"}>
 					<h1>Winner!</h1>
+					<img src={props.winner?.image} alt="Winner portrait" />
 					<div>{props.winner?.name}</div>
 					<div>{props.winner?.state.name}</div>
 					<div>{props.winner?.weapon.name}</div>
