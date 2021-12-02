@@ -6,27 +6,33 @@
 	},
 	{
 		"key": "snake",
-		"name": "Snake Pliskin"
+		"name": "Snake Plissken",
+		"image": "https://iili.io/5b54bS.md.webp"
 	},
 	{
 		"key": "rambo",
-		"name": "John Rambo"
+		"name": "John Rambo",
+		"image": "https://iili.io/5b58gf.md.webp"
 	},
 	{
 		"key": "billy",
-		"name": "Billy Herrington"
+		"name": "Billy Herrington",
+		"image": "https://iili.io/5b7KrJ.md.webp"
 	},
 	{
 		"key": "ripley",
-		"name": "Ripley"
+		"name": "Ripley",
+		"image": "https://iili.io/5b5WRp.md.webp"
 	},
 	{
 		"key": "neo",
-		"name": "Neo"
+		"name": "Neo",
+		"image": "https://iili.io/5bAZQe.md.webp"
 	},
 	{
 		"key": "burton",
-		"name": "Jack Burton"
+		"name": "Jack Burton",
+		"image": "https://iili.io/5b5Z0b.md.webp"
 	},
 	{
 		"key": "mcclane",
@@ -35,7 +41,8 @@
 	},
 	{
 		"key": "indi",
-		"name": "Indiana Jones"
+		"name": "Indiana Jones",
+		"image": "https://iili.io/5bAPv2.md.webp"
 	},
 	{
 		"key": "robocop",
