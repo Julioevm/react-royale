@@ -10,8 +10,8 @@ export interface EventDesc {
 
 //TODO: Extract to a config file.
 enum EngagementChance {
-	Low = 25,
-	Medium = 50,
+	Low = 20,
+	Medium = 45,
 	High = 75,
 	Extreme = 90,
 }
@@ -23,11 +23,20 @@ function getEngagementChance(playerCount: number): number {
 	return EngagementChance.Low;
 }
 
-function getEngagements(players: Player[]) {
+const engagementRoundMod = (round: number) => {
+	if (round < 4) return -10;
+	if (round > 7) return 10;
+
+	return 0;
+};
+
+function getEngagements(players: Player[], roundStage: number) {
+	const engagementChance =
+		getEngagementChance(players.length) + engagementRoundMod(roundStage);
+	console.log(engagementChance);
 	let engagedPlayers: Player[] = [];
 	for (const player of players) {
-		if (rollChance(getEngagementChance(players.length)))
-			engagedPlayers.push(player);
+		if (rollChance(engagementChance)) engagedPlayers.push(player);
 	}
 
 	// If the list is odd, skip the last player.
@@ -77,10 +86,13 @@ export function generateIdleEvent(player: Player): EventDesc {
 	return { id, desc };
 }
 
-export function generateRoundEvents(players: Player[]): EventDesc[] {
+export function generateRoundEvents(
+	players: Player[],
+	round: number
+): EventDesc[] {
 	let events: EventDesc[] = [];
 	const livePlayers = players.filter((player) => player.state !== STATE_DEAD);
-	const engagedPlayers = getEngagements(livePlayers);
+	const engagedPlayers = getEngagements(livePlayers, round);
 
 	events = generateEngagementEvents(engagedPlayers);
 

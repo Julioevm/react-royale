@@ -13,7 +13,7 @@ export interface GameRound {
 }
 
 export function generateRound(id: number, players: Player[]): GameRound {
-	const events = generateRoundEvents(players);
+	const events = generateRoundEvents(players, id);
 	const round = { id, name: `Day ${id}`, events };
 	return {players, round}
 }
