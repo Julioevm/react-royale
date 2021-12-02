@@ -48,9 +48,17 @@
 	align-items: center;
 	text-align: center;
 	width: 100px;
+	height: 170px;
+
+	img {
+		height: 100px;
+		width: 100px;
+		overflow: hidden;
+	}
 }
 
 .playerCardInfo {
+	margin-top: 5px;
 	.smaller {
 		font-size: smaller;
 	}
