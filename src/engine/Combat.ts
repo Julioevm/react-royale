@@ -40,7 +40,7 @@ export function generateFightEvent(
 	let desc;
 
 	if (roll === CombatRoll.Kill) {
-		desc = `${player1.name} wins!`;
+		desc = `${player1.name} kills ${player2.name}!`;
 	} else if (roll === CombatRoll.Wound) {
 		desc = `${player1.name} wounds ${player2.name}!`;
 	} else {

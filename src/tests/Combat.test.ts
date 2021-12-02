@@ -4,7 +4,7 @@ import { player1, player2 } from "./__fixtures__/players";
 describe("generateFightEvent", () => {
 	it("should generate a win event if roll < threshold", () => {
 		expect(generateFightEvent(CombatRoll.Kill, player1, player2).desc).toBe(
-			"Player1 wins!"
+			"Player1 kills Player2!"
 		);
 	});
 

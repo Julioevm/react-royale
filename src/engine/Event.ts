@@ -18,8 +18,8 @@ enum EngagementChance {
 
 function getEngagementChance(playerCount: number): number {
 	if (playerCount < 3) return EngagementChance.Extreme;
-	if (playerCount < 10) return EngagementChance.High;
-	if (playerCount < 20) return EngagementChance.Medium;
+	if (playerCount < 6) return EngagementChance.High;
+	if (playerCount < 10) return EngagementChance.Medium;
 	return EngagementChance.Low;
 }
 
@@ -54,6 +54,12 @@ function generateEngagementEvents(players: Player[]): EventDesc[] {
 
 		if (combatRoll === CombatRoll.Kill) {
 			player2.state = STATE_DEAD;
+
+			const deathEvent: EventDesc = {
+				id: `${player2.key}-death` + new Date().getTime(),
+				desc: `${player2.name} has died! 💀`,
+			};
+			events.push(deathEvent);
 		}
 	}
 

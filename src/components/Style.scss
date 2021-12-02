@@ -49,12 +49,19 @@
 	text-align: center;
 	width: 100px;
 	height: 170px;
+	position: relative;
 
 	img {
 		height: 100px;
 		width: 100px;
 		overflow: hidden;
 		object-fit: cover;
+	}
+
+	.img-cross {
+		position: absolute;
+		top: 5px px;
+		left: 10px;
 	}
 }
 
