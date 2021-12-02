@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import "./App.scss";
 import EventLog from "./components/EventLog";
 import Header from "./components/Header";
-import Roster from "./components/Roster";
+
 import Winner from "./components/Winner";
 import { getPlayers, Player, STATE_DEAD } from "./DAL/Player";
 import { generateRound, Round } from "./engine/Round";
+
+const Roster = lazy(() => import("./components/Roster"));
 
 function App() {
 	const [currentRound, setCurrentRound] = useState(1);
@@ -53,10 +55,14 @@ function App() {
 		}
 	};
 
+	const renderLoader = () => <div>Loading...</div>;
+
 	return (
 		<div className="App">
 			<Header />
+			<Suspense fallback={renderLoader()}>
 			<Roster players={players} />
+		</Suspense>
 			<EventLog
 				rounds={rounds}
 				action={buttonAction()}
