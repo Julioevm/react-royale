@@ -2,6 +2,7 @@ import { STATE_DEAD } from "./../DAL/Player";
 import { Player } from "../DAL/Player";
 import { getRandomNumber, rollChance } from "./Utils";
 import { CombatRoll, generateFightEvent, generateFightRoll } from "./Combat";
+import { findWeapon } from "../DAL/Weapon";
 
 export interface EventDesc {
 	id: string;
@@ -33,7 +34,6 @@ const engagementRoundMod = (round: number) => {
 function getEngagements(players: Player[], roundStage: number) {
 	const engagementChance =
 		getEngagementChance(players.length) + engagementRoundMod(roundStage);
-	console.log(engagementChance);
 	let engagedPlayers: Player[] = [];
 	for (const player of players) {
 		if (rollChance(engagementChance)) engagedPlayers.push(player);
@@ -75,11 +75,14 @@ function generateEngagementEvents(players: Player[]): EventDesc[] {
 	return events;
 }
 
-export function generateIdleEvent(player: Player): EventDesc {
+export function generatePlayerEvent(player: Player): EventDesc {
 	const roll = getRandomNumber(100);
 	let desc;
-	if (roll > 70) desc = `${player.name} is looking for a weapon...`;
-	else if (roll > 30) desc = `${player.name} is moving!`;
+	if (roll > 70) {
+		let weapon = findWeapon(getRandomNumber(100));
+		desc = `${player.name} has found a ${weapon.name}!`;
+		player.weapon = weapon;
+	} else if (roll > 30) desc = `${player.name} is moving!`;
 	else desc = `${player.name} is resting...`;
 
 	const id = player.key + new Date().getTime();
@@ -102,7 +105,7 @@ export function generateRoundEvents(
 	);
 
 	for (const player of unEngagedPlayers) {
-		events.push(generateIdleEvent(player));
+		events.push(generatePlayerEvent(player));
 	}
 
 	return events;

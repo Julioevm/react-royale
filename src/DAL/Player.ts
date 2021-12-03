@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import { Weapon, WEAPON_FISTS } from "./Weapon";
 
 export interface PlayerState {
 	name: string;
@@ -17,20 +18,6 @@ export const STATE_DEAD: PlayerState = {
 	bonus: 0,
 	style: { color: "red" },
 };
-
-export const WEAPON_FISTS: Weapon = {
-	key: "fists",
-	name: "Fists",
-	value: 0,
-	types: ["hth"],
-};
-
-export interface Weapon {
-	key: string;
-	name: string;
-	value: number;
-	types: string[];
-}
 
 export interface Player {
 	key: string;

@@ -1,4 +1,5 @@
-import { STATE_DEAD, STATE_HEALTHY, WEAPON_FISTS } from "../../DAL/Player";
+import { STATE_DEAD, STATE_HEALTHY } from "../../DAL/Player";
+import { WEAPON_FISTS } from "../../DAL/Weapon";
 
 export const player1 = {
 	key: "test1",
