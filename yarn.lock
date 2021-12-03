@@ -1874,7 +1874,7 @@
 
 "@types/react-test-renderer@^17.0.1":
   "integrity" "sha1-MSD30cFX+6nfARja4gywKX7g4Gs="
-  "resolved" "https://artifacthub-tip.oraclecorp.com/api/npm/npmjs-remote/@types/react-test-renderer/-/react-test-renderer-17.0.1.tgz"
+  "resolved" "https://registry.npmjs.org/@types/react-test-renderer/-/react-test-renderer-17.0.1.tgz"
   "version" "17.0.1"
   dependencies:
     "@types/react" "*"
