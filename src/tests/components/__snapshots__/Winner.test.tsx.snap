@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Winner/> renders 1`] = `
+<div
+  className="modal"
+  onClick={[Function]}
+>
+  <div
+    className="modal-card-container"
+    onClick={[Function]}
+  >
+    <div
+      className="modal-card"
+      data-testid="modal-card"
+    >
+      <h1>
+        The winner is...
+      </h1>
+      <img
+        alt="Winner portrait"
+        className="image"
+      />
+      <p
+        className="winnerName"
+      >
+        Player1
+      </p>
+      <p>
+        Healthy
+      </p>
+      <p>
+        Fists
+      </p>
+      <div
+        className="layers"
+      >
+        <div
+          className="layer"
+        />
+        <div
+          className="layer"
+        />
+        <div
+          className="layer"
+        />
+        <div
+          className="layer"
+        />
+        <div
+          className="layer"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

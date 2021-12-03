@@ -20,22 +20,37 @@
 	--bi: radial-gradient(ellipse at center, #446bb3 0%, #000000 90%);
 	position: relative;
 	width: 320px;
-	height: 320px;
+	height: 380px;
 	padding: 3em;
 	color: v.$text-color;
 	transform: rotateY(30deg) rotateX(15deg);
 	transform-style: preserve-3d;
 	transition: transform 1s;
+	text-align: center;
 
 	&:hover {
 		transform: rotateY(-15deg) rotateX(-15deg);
 	}
 
-	img {
+	.winnerName {
+		font-size: 1.5em;
+	}
+
+	.image {
+		display: block;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
 		height: 220px;
 		width: 250px;
 		overflow: hidden;
 		object-fit: cover;
+	}
+
+	p {
+		margin: 5px;
 	}
 }
 

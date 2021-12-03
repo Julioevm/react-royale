@@ -18,11 +18,11 @@ export default function Winner(props: {
 				onClick={(e) => e.stopPropagation()}
 			>
 				<div className="modal-card" data-testid={"modal-card"}>
-					<h1>Winner!</h1>
-					<img src={props.winner?.image} alt="Winner portrait" />
-					<div>{props.winner?.name}</div>
-					<div>{props.winner?.state.name}</div>
-					<div>{props.winner?.weapon.name}</div>
+					<h1>The winner is...</h1>
+					<img className="image" src={props.winner?.image} alt="Winner portrait" />
+					<p className="winnerName">{props.winner?.name}</p>
+					<p>{props.winner?.state.name}</p>
+					<p>{props.winner?.weapon.name}</p>
 					<div className="layers">
 						<div className="layer"></div>
 						<div className="layer"></div>
