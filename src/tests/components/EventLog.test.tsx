@@ -5,7 +5,13 @@ import { rounds } from "../__fixtures__/rounds";
 
 describe("<EventLog >", () => {
 	it("should render the title", () => {
-		render(<EventLog rounds={rounds} action={function (): void {}} buttonText={"next round"} />);
+		render(
+			<EventLog
+				rounds={rounds}
+				action={function (): void {}}
+				buttonText={"next round"}
+			/>
+		);
 		const title = screen.getByText(/event log/i);
 		expect(title).toBeInTheDocument();
 	});
@@ -26,7 +32,11 @@ describe("<EventLog >", () => {
 		it("should call the nextRound function", () => {
 			const nextRound = jest.fn();
 			render(
-				<EventLog rounds={rounds} action={nextRound} buttonText={"next round"} />
+				<EventLog
+					rounds={rounds}
+					action={nextRound}
+					buttonText={"next round"}
+				/>
 			);
 			const button = screen.getByText(/next round/i);
 			button.click();

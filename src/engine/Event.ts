@@ -34,7 +34,7 @@ const engagementRoundMod = (round: number) => {
 function getEngagements(players: Player[], roundStage: number) {
 	const engagementChance =
 		getEngagementChance(players.length) + engagementRoundMod(roundStage);
-	let engagedPlayers: Player[] = [];
+	const engagedPlayers: Player[] = [];
 	for (const player of players) {
 		if (rollChance(engagementChance)) engagedPlayers.push(player);
 	}
@@ -45,7 +45,7 @@ function getEngagements(players: Player[], roundStage: number) {
 }
 
 function generateEngagementEvents(players: Player[]): EventDesc[] {
-	let events: EventDesc[] = [];
+	const events: EventDesc[] = [];
 
 	for (let i = 0; i < players.length; i += 2) {
 		const player1 = players[i];
@@ -79,7 +79,7 @@ export function generatePlayerEvent(player: Player): EventDesc {
 	const roll = getRandomNumber(100);
 	let desc;
 	if (roll > 70) {
-		let weapon = findWeapon(getRandomNumber(100));
+		const weapon = findWeapon(getRandomNumber(100));
 		desc = `${player.name} has found a ${weapon.name}!`;
 		player.weapon = weapon;
 	} else if (roll > 30) desc = `${player.name} is moving!`;
