@@ -1,4 +1,4 @@
-import { Player, STATE_WOUNDED } from "../DAL/Player";
+import { Player, STATE_DEAD, STATE_WOUNDED } from "../DAL/Player";
 import { EventDesc } from "./Event";
 import { getRandomNumber } from "./Utils";
 
@@ -17,12 +17,11 @@ export function generateFightRoll(
 	attacker: Player,
 	defender: Player
 ): CombatRoll {
-	// The lowest value a weapon should have is 10 for the fists, hence 20 means both players are unarmed.
 	const isHtHCombat = attacker.weapon.isHtH && defender.weapon.isHtH;
 	const playerThreshold = isHtHCombat ? 50 : attacker.weapon.value;
 	// The player state adds (or takes) to the combat roll.
 	const playerRoll = getRandomNumber(100) + attacker.state.penalty;
-	
+
 	// When in Hand to Hand combat (HtH) the first kill roll only wounds.
 	if (playerRoll < playerThreshold && !isHtHCombat) {
 		return CombatRoll.Kill;
@@ -57,6 +56,33 @@ export function generateFightEvent(
 			new Date().getTime(),
 		desc: desc,
 	};
+
+	return event;
+}
+
+export function generateDefenderStatusEvent(
+	combatRoll: CombatRoll,
+	defender: Player
+): EventDesc | undefined {
+	let event;
+
+	if (combatRoll === CombatRoll.Kill) {
+		defender.state = STATE_DEAD;
+
+		const deathEvent: EventDesc = {
+			id: `${defender.key}-death` + new Date().getTime(),
+			desc: `${defender.name} has died! 💀`,
+		};
+		event = deathEvent;
+	} else if (combatRoll === CombatRoll.Wound) {
+		defender.state = STATE_WOUNDED;
+
+		const woundEvent: EventDesc = {
+			id: `${defender.key}-wound` + new Date().getTime(),
+			desc: `${defender.name} is wounded!`,
+		};
+		event = woundEvent;
+	}
 
 	return event;
 }
