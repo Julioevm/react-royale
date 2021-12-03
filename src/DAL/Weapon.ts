@@ -12,6 +12,22 @@ export const WEAPON_PISTOL: Weapon = {
 	types: ["ranged"],
 };
 
+export const WEAPON_TEDDY: Weapon = {
+	// Test weapon that ensures 0% kill chance
+	key: "teddy",
+	name: "Teddy Bear",
+	value: 0,
+	types: ["fluffy"],
+};
+
+export const WEAPON_DECIMATOR: Weapon = {
+	// Test weapon that ensures 100% kill chance
+	key: "decimator",
+	name: "Decimator",
+	value: 100,
+	types: ["ranged"],
+};
+
 export interface Weapon {
 	key: string;
 	name: string;
@@ -20,5 +36,6 @@ export interface Weapon {
 }
 
 export function findWeapon(roll: number): Weapon {
+	// TODO: Load weapons from file and search by rarity.
 	return WEAPON_PISTOL;
 }
