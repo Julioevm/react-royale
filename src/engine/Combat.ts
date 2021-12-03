@@ -18,15 +18,13 @@ export function generateFightRoll(
 	defender: Player
 ): CombatRoll {
 	// The lowest value a weapon should have is 10 for the fists, hence 20 means both players are unarmed.
-	const isHthCombat = attacker.weapon.value + defender.weapon.value === 20;
-	const playerThreshold = isHthCombat
-		? 50
-		: attacker.weapon.value;
+	const isHtHCombat = attacker.weapon.isHtH && defender.weapon.isHtH;
+	const playerThreshold = isHtHCombat ? 50 : attacker.weapon.value;
 	// The player state adds (or takes) to the combat roll.
 	const playerRoll = getRandomNumber(100) + attacker.state.penalty;
-
+	
 	// When in Hand to Hand combat (HtH) the first kill roll only wounds.
-	if (playerRoll < playerThreshold && !isHthCombat) {
+	if (playerRoll < playerThreshold && !isHtHCombat) {
 		return CombatRoll.Kill;
 	} else if (playerRoll <= playerThreshold + 10) {
 		// Wounding an already wounded player results in a kill
