@@ -1,4 +1,4 @@
-import { STATE_DEAD } from "./../DAL/Player";
+import { STATE_DEAD, STATE_WOUNDED } from "./../DAL/Player";
 import { Player } from "../DAL/Player";
 import { getRandomNumber, rollChance } from "./Utils";
 import { CombatRoll, generateFightEvent, generateFightRoll } from "./Combat";
@@ -69,6 +69,14 @@ function generateEngagementEvents(players: Player[]): EventDesc[] {
 				desc: `${player2.name} has died! 💀`,
 			};
 			events.push(deathEvent);
+		} else if (combatRoll === CombatRoll.Wound) {
+			player2.state = STATE_WOUNDED;
+
+			const woundEvent: EventDesc = {
+				id: `${player2.key}-wound` + new Date().getTime(),
+				desc: `${player2.name} is wounded!`,
+			};
+			events.push(woundEvent);
 		}
 	}
 
@@ -78,7 +86,7 @@ function generateEngagementEvents(players: Player[]): EventDesc[] {
 export function generatePlayerEvent(player: Player): EventDesc {
 	const roll = getRandomNumber(100);
 	let desc;
-	if (roll > 70) {
+	if (roll > 80) {
 		const weapon = findWeapon(getRandomNumber(100));
 		desc = `${player.name} has found a ${weapon.name}!`;
 		player.weapon = weapon;

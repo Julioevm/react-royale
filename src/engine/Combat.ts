@@ -1,4 +1,4 @@
-import { Player } from "../DAL/Player";
+import { Player, STATE_WOUNDED } from "../DAL/Player";
 import { EventDesc } from "./Event";
 import { getRandomNumber } from "./Utils";
 
@@ -14,19 +14,25 @@ export enum CombatRoll {
 }
 
 export function generateFightRoll(
-	player1: Player,
-	player2: Player
+	attacker: Player,
+	defender: Player
 ): CombatRoll {
-	const hthCombat = player1.weapon.value + player2.weapon.value === 0;
-	const playerThreshold = hthCombat
-		? getRandomNumber(50)
-		: getRandomNumber(player1.weapon.value);
-	const playerRoll = getRandomNumber(100) + player1.state.bonus;
+	// The lowest value a weapon should have is 10 for the fists, hence 20 means both players are unarmed.
+	const isHthCombat = attacker.weapon.value + defender.weapon.value === 20;
+	const playerThreshold = isHthCombat
+		? 50
+		: attacker.weapon.value;
+	// The player state adds (or takes) to the combat roll.
+	const playerRoll = getRandomNumber(100) + attacker.state.penalty;
 
-	if (playerRoll < playerThreshold) {
+	// When in Hand to Hand combat (HtH) the first kill roll only wounds.
+	if (playerRoll < playerThreshold && !isHthCombat) {
 		return CombatRoll.Kill;
 	} else if (playerRoll <= playerThreshold + 10) {
-		return CombatRoll.Wound;
+		// Wounding an already wounded player results in a kill
+		return defender.state === STATE_WOUNDED
+			? CombatRoll.Kill
+			: CombatRoll.Wound;
 	} else {
 		return CombatRoll.Miss;
 	}

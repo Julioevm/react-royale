@@ -1,4 +1,9 @@
-import { generateFightEvent, CombatRoll } from "../engine/Combat";
+import { WEAPON_DECIMATOR } from "./../DAL/Weapon";
+import {
+	generateFightEvent,
+	CombatRoll,
+	generateFightRoll,
+} from "../engine/Combat";
 import { player1, player2 } from "./__fixtures__/players";
 
 describe("generateFightEvent", () => {
@@ -18,5 +23,12 @@ describe("generateFightEvent", () => {
 		expect(generateFightEvent(CombatRoll.Miss, player1, player2).desc).toBe(
 			"Player1 misses Player2!"
 		);
+	});
+});
+
+describe("generateFightRoll", () => {
+	it("should return CombatRoll.Kill with a playerRoll < playerThreshold", () => {
+		player1.weapon = WEAPON_DECIMATOR;
+		expect(generateFightRoll(player1, player2)).toBe(CombatRoll.Kill);
 	});
 });

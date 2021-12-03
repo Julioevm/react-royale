@@ -3,19 +3,25 @@ import { Weapon, WEAPON_FISTS } from "./Weapon";
 
 export interface PlayerState {
 	name: string;
-	bonus: number;
+	penalty: number;
 	style: CSSProperties;
 }
 
 export const STATE_HEALTHY: PlayerState = {
 	name: "Healthy",
-	bonus: 0,
+	penalty: 0,
 	style: { color: "green" },
+};
+
+export const STATE_WOUNDED: PlayerState = {
+	name: "Wounded",
+	penalty: 15,
+	style: { color: "yellow" },
 };
 
 export const STATE_DEAD: PlayerState = {
 	name: "Dead",
-	bonus: 0,
+	penalty: 0,
 	style: { color: "red" },
 };
 
