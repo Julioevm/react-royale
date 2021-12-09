@@ -6,7 +6,7 @@ import "./Style.scss";
 
 export default function PlayerCard(player: Player) {
 	return (
-		<div className="card card--player">
+		<div className="card card--player" data-testid="player-card">
 			<img src={player.image || profile} alt="Player profile"></img>
 			{player.state === STATE_DEAD && (
 				<img className={"img-cross"} src={cross} alt="Player profile" />
