@@ -1,8 +1,9 @@
 import { generatePlayerEvent, EventDesc } from "../engine/Event";
 import { player1 } from "./__fixtures__/players";
+import weapons from "./__fixtures__/weapons";
 
 describe("generateEvent", () => {
-	const event: EventDesc = generatePlayerEvent(player1);
+	const event: EventDesc = generatePlayerEvent(player1, weapons);
 	it("should have a id", () => {
 		expect(event.id.toString()).toMatch("1");
 	});

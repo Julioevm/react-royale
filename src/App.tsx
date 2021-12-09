@@ -4,35 +4,36 @@ import EventLog from "./components/EventLog";
 import Header from "./components/Header";
 
 import Winner from "./components/Winner";
-import { getPlayers, Player, STATE_DEAD } from "./DAL/Player";
-import { generateRound, Round } from "./engine/Round";
+import { Player, STATE_DEAD } from "./DAL/Player";
+import { EMPTY_GAME, Game, generateRound, startGame } from "./engine/Round";
 
 const Roster = lazy(() => import("./components/Roster"));
 
 function App() {
-	const [currentRound, setCurrentRound] = useState(1);
-	const [players, setPlayers] = useState(getPlayers());
-	const [rounds, setRounds] = useState([] as Round[]);
+	const [game, setGame] = useState<Game>(EMPTY_GAME);
 	const [winner, setWinner] = useState<Player | undefined>(undefined);
 	const [show, setShow] = useState(false);
+
 	const buttonText = () => {
 		if (winner) {
 			return "Play Again";
-		} else if (rounds.length === 0) {
+		} else if (game.rounds.length === 0) {
 			return "Start Game";
 		} else {
 			return "Next Round!";
 		}
 	};
 
-	const nextRound = () => {
-		const newGameRound = generateRound(currentRound, players);
+	const isNewGame = () => {
+		return game.rounds.length === 0;
+	};
 
-		const newRounds = [...rounds, newGameRound.round];
-		setRounds(newRounds);
-		setPlayers(newGameRound.players);
-		setCurrentRound(currentRound + 1);
-		const livePlayers = players.filter((p) => p.state !== STATE_DEAD);
+	const nextRound = () => {
+		const newGameRound = generateRound(game);
+
+		const newRounds = [...game.rounds, newGameRound.round];
+		setGame({ ...game, rounds: newRounds, players: newGameRound.players });
+		const livePlayers = game.players.filter((p) => p.state !== STATE_DEAD);
 		if (livePlayers.length === 1) {
 			setWinner(livePlayers[0]);
 			setShow(true);
@@ -40,15 +41,13 @@ function App() {
 	};
 
 	const restart = () => {
-		setPlayers(getPlayers());
-		setCurrentRound(1);
-		setRounds([]);
+		setGame(startGame());
 		setWinner(undefined);
 		setShow(false);
 	};
 
 	const buttonAction = () => {
-		if (winner) {
+		if (isNewGame() || winner) {
 			return restart;
 		} else {
 			return nextRound;
@@ -61,10 +60,10 @@ function App() {
 		<div className="App">
 			<Header />
 			<Suspense fallback={renderLoader()}>
-			<Roster players={players} />
-		</Suspense>
+				<Roster players={game.players} />
+			</Suspense>
 			<EventLog
-				rounds={rounds}
+				rounds={game.rounds}
 				action={buttonAction()}
 				buttonText={buttonText()}
 			/>

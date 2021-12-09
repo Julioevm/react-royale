@@ -1,3 +1,4 @@
+import { Weapon } from "./../DAL/Weapon";
 import { STATE_DEAD } from "./../DAL/Player";
 import { Player } from "../DAL/Player";
 import { getRandomNumber, rollChance } from "./Utils";
@@ -6,7 +7,6 @@ import {
 	generateFightEvent,
 	generateFightRoll,
 } from "./Combat";
-import { findWeapon } from "../DAL/Weapon";
 
 export interface EventDesc {
 	id: string;
@@ -45,6 +45,7 @@ function getEngagements(players: Player[], roundStage: number) {
 
 	// If the list is odd, skip the last player.
 	if (engagedPlayers.length % 2 > 0) engagedPlayers.pop();
+	// Should we shuffle the list?
 	return engagedPlayers;
 }
 
@@ -76,13 +77,26 @@ function generateEngagementEvents(players: Player[]): EventDesc[] {
 	return events;
 }
 
-export function generatePlayerEvent(player: Player): EventDesc {
+function findWeapon(roll: number, weapons: Weapon[]): Weapon | null {
+	const weaponFilter = weapons.filter((w) => w.value < roll);
+	if (weaponFilter.length === 0) return null;
+	return weaponFilter[getRandomNumber(weaponFilter.length)];
+}
+
+export function generatePlayerEvent(
+	player: Player,
+	weapons: Weapon[]
+): EventDesc {
 	const roll = getRandomNumber(100);
 	let desc;
 	if (roll > 80) {
-		const weapon = findWeapon(getRandomNumber(100));
-		desc = `${player.name} has found a ${weapon.name}!`;
-		player.weapon = weapon;
+		const weapon = findWeapon(getRandomNumber(100), weapons);
+		if (weapon) {
+			desc = `${player.name} has found a ${weapon.name}!`;
+			player.weapon = weapon;
+		} else {
+			desc = `${player.name} has found nothing useful!`;
+		}
 	} else if (roll > 30) desc = `${player.name} is moving!`;
 	else desc = `${player.name} is resting...`;
 
@@ -92,7 +106,8 @@ export function generatePlayerEvent(player: Player): EventDesc {
 
 export function generateRoundEvents(
 	players: Player[],
-	round: number
+	round: number,
+	weapons: Weapon[]
 ): EventDesc[] {
 	let events: EventDesc[] = [];
 	const livePlayers = players.filter((player) => player.state !== STATE_DEAD);
@@ -106,7 +121,7 @@ export function generateRoundEvents(
 	);
 
 	for (const player of unEngagedPlayers) {
-		events.push(generatePlayerEvent(player));
+		events.push(generatePlayerEvent(player, weapons));
 	}
 
 	return events;
