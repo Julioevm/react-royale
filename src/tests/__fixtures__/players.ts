@@ -1,5 +1,5 @@
 import { STATE_DEAD, STATE_HEALTHY } from "../../DAL/Player";
-import { WEAPON_FISTS } from "../../DAL/Weapon";
+import { WEAPON_FISTS } from "./weapons";
 
 export const player1 = {
 	key: "test1",
