@@ -24,3 +24,11 @@ export function findWeapon(roll: number): Weapon {
 	// TODO: Load weapons from file and search by rarity.
 	return WEAPON_PISTOL;
 }
+
+function loadWeaponJSON() {
+	return require("../assets/data/weapons.json")
+}
+
+function getWeapons(): Weapon[] {
+	return loadWeaponJSON();
+}
