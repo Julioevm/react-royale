@@ -3,6 +3,7 @@ import { STATE_DEAD } from "./../DAL/Player";
 import { Player } from "../DAL/Player";
 import { getRandomNumber, rollChance } from "./Utils";
 import {
+	combatRound,
 	generateDefenderStatusEvent,
 	generateFightEvent,
 	generateFightRoll,
@@ -45,7 +46,7 @@ function getEngagements(players: Player[], roundStage: number) {
 
 	// If the list is odd, skip the last player.
 	if (engagedPlayers.length % 2 > 0) engagedPlayers.pop();
-	// Should we shuffle the list?
+	//? Should we shuffle the list?
 	return engagedPlayers;
 }
 
@@ -63,15 +64,12 @@ function generateEngagementEvents(players: Player[]): EventDesc[] {
 
 		events.push(event);
 
-		const combatRoll = generateFightRoll(player1, player2);
-		events.push(generateFightEvent(combatRoll, player1, player2));
+		combatRound(player1, player2, events);
 
-		const defenderStatusEvent = generateDefenderStatusEvent(
-			combatRoll,
-			player2
-		);
-
-		if (defenderStatusEvent) events.push(defenderStatusEvent);
+		// If the second player survives, he counter-attacks
+		if (player2.state !== STATE_DEAD) {
+			combatRound(player2, player1, events);
+		}
 	}
 
 	return events;

@@ -86,3 +86,15 @@ export function generateDefenderStatusEvent(
 
 	return event;
 }
+
+export function combatRound(attacker: Player, defender: Player, events: EventDesc[]) {
+	const combatRoll = generateFightRoll(attacker, defender);
+		events.push(generateFightEvent(combatRoll, attacker, defender));
+
+		const defenderStatusEvent = generateDefenderStatusEvent(
+			combatRoll,
+			defender
+		);
+
+		if (defenderStatusEvent) events.push(defenderStatusEvent);
+}
