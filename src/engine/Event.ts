@@ -2,12 +2,7 @@ import { Weapon } from "./../DAL/Weapon";
 import { STATE_DEAD } from "./../DAL/Player";
 import { Player } from "../DAL/Player";
 import { getRandomNumber, rollChance } from "./Utils";
-import {
-	combatRound,
-	generateDefenderStatusEvent,
-	generateFightEvent,
-	generateFightRoll,
-} from "./Combat";
+import { combatRound } from "./Combat";
 
 export interface EventDesc {
 	id: string;
@@ -44,10 +39,12 @@ function getEngagements(players: Player[], roundStage: number) {
 		if (rollChance(engagementChance)) engagedPlayers.push(player);
 	}
 
+	// Shuffle the players to generate more varied encounters
+	const shuffledPlayers = engagedPlayers.sort(() => 0.5 - Math.random());
 	// If the list is odd, skip the last player.
-	if (engagedPlayers.length % 2 > 0) engagedPlayers.pop();
-	//? Should we shuffle the list?
-	return engagedPlayers;
+	if (shuffledPlayers.length % 2 > 0) shuffledPlayers.pop();
+	
+	return shuffledPlayers;
 }
 
 function generateEngagementEvents(players: Player[]): EventDesc[] {

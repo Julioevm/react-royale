@@ -1,20 +1,44 @@
 [
-    {
-        "key": "ar15",
-        "name": "AR-15",
-        "value": "75",
-        "types": ["automatic"]
-    },
-    {
-        "key": "bow",
-        "name": "Bow",
-        "value": "45",
-        "types": ["bows"]
-    },
-    {
-        "key": "bknife",
-        "name": "Bowie Knife",
-        "value": "30",
-        "types": ["slash", "pierce"]
-    }
+	{
+		"key": "ar15",
+		"name": "AR-15",
+		"value": "75",
+		"types": ["automatic"]
+	},
+	{
+		"key": "bow",
+		"name": "Bow",
+		"value": "45",
+		"types": ["bows"]
+	},
+	{
+		"key": "bat",
+		"name": "Baseball bat",
+		"value": "35",
+		"types": ["blunt"]
+	},
+	{
+		"key": "bknife",
+		"name": "Bowie Knife",
+		"value": "30",
+		"types": ["slash", "pierce"]
+	},
+	{
+		"key": "pistol",
+		"name": ".45 Handgun",
+		"value": "40",
+		"types": ["aimed", "semi-automatic"]
+	},
+	{
+		"key": "shotgun",
+		"name": "Shotgun",
+		"value": "50",
+		"types": ["aimed", "pump-action"]
+	},
+	{
+		"key": "rifle",
+		"name": "Hunting Rifle",
+		"value": "60",
+		"types": ["aimed"]
+	}
 ]
