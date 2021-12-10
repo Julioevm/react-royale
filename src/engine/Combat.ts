@@ -17,15 +17,17 @@ export function generateFightRoll(
 	attacker: Player,
 	defender: Player
 ): CombatRoll {
-	const isHtHCombat = attacker.weapon.isHtH && defender.weapon.isHtH;
-	const playerThreshold = isHtHCombat ? 50 : attacker.weapon.value;
+	const isHtHCombat: boolean =
+		(attacker.weapon.isHtH && defender.weapon.isHtH) || false;
+	const playerThreshold: number = isHtHCombat ? 50 : attacker.weapon.value;
+
 	// The player state adds (or takes) to the combat roll.
-	const playerRoll = getRandomNumber(100) + attacker.state.penalty;
+	const playerRoll: number = getRandomNumber(100) + attacker.state.penalty;
 
 	// When in Hand to Hand combat (HtH) the first kill roll only wounds.
 	if (playerRoll < playerThreshold && !isHtHCombat) {
 		return CombatRoll.Kill;
-	} else if (playerRoll <= playerThreshold + 10) {
+	} else if (playerRoll <= +playerThreshold + +10) {
 		// Wounding an already wounded player results in a kill
 		return defender.state === STATE_WOUNDED
 			? CombatRoll.Kill
@@ -87,14 +89,15 @@ export function generateDefenderStatusEvent(
 	return event;
 }
 
-export function combatRound(attacker: Player, defender: Player, events: EventDesc[]) {
+export function combatRound(
+	attacker: Player,
+	defender: Player,
+	events: EventDesc[]
+) {
 	const combatRoll = generateFightRoll(attacker, defender);
-		events.push(generateFightEvent(combatRoll, attacker, defender));
+	events.push(generateFightEvent(combatRoll, attacker, defender));
 
-		const defenderStatusEvent = generateDefenderStatusEvent(
-			combatRoll,
-			defender
-		);
+	const defenderStatusEvent = generateDefenderStatusEvent(combatRoll, defender);
 
-		if (defenderStatusEvent) events.push(defenderStatusEvent);
+	if (defenderStatusEvent) events.push(defenderStatusEvent);
 }
