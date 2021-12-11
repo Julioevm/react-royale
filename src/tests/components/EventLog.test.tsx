@@ -12,7 +12,7 @@ describe("<EventLog >", () => {
 				buttonText={"next round"}
 			/>
 		);
-		const title = screen.getByText(/event log/i);
+		const title = screen.getByText(/events/i);
 		expect(title).toBeInTheDocument();
 	});
 
