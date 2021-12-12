@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import EventLog from "../../components/EventLog";
 import { rounds } from "../__fixtures__/rounds";
 
+
 describe("<EventLog >", () => {
 	it("should render the title", () => {
 		render(

@@ -3,6 +3,7 @@ import { Round } from "../engine/Round";
 import Event from "./Event";
 import "./Style.scss";
 import useWindowSize from "../utils/useWindowSize";
+import * as Scroll from "react-scroll";
 
 export default function EventLog({
 	rounds,
@@ -15,9 +16,11 @@ export default function EventLog({
 }) {
 	const isMobile = useWindowSize().width < 768;
 	const isDesktop = !isMobile;
+	const Element  = Scroll.Element;
 
 	const button = (
 		<button
+		id={"round-button"}
 			className="center pushable"
 			onClick={nextRound}
 			data-testid="round-button"
@@ -38,13 +41,14 @@ export default function EventLog({
 	));
 
 	return (
-		<div className="container">
+		<div id="event-log" className="container">
 			<h2>Events</h2>
 			{isDesktop && button}
 			<div className="eventContainer">
 				{isDesktop ? roundList.reverse() : roundList}
 			</div>
 			{isMobile && button}
+			<Element name="myScrollToElement"></Element>
 		</div>
 	);
 }
