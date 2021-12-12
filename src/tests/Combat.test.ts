@@ -12,13 +12,13 @@ jest.mock("../engine/Utils.ts");
 describe("generateFightEvent", () => {
 	it("should generate a win event if roll < threshold", () => {
 		expect(generateFightEvent(CombatRoll.Kill, player1, player2).desc).toBe(
-			"Player1 kills Player2!"
+			"Player1 kills Player2 with Fists!"
 		);
 	});
 
 	it("should generate a wound event if roll is > threshold and < + threshold + 10", () => {
 		expect(generateFightEvent(CombatRoll.Wound, player1, player2).desc).toBe(
-			"Player1 wounds Player2!"
+			"Player1 wounds Player2 with Fists!"
 		);
 	});
 

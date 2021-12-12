@@ -45,9 +45,9 @@ export function generateFightEvent(
 	let desc;
 
 	if (roll === CombatRoll.Kill) {
-		desc = `${player1.name} kills ${player2.name}!`;
+		desc = `${player1.name} kills ${player2.name} with ${player1.weapon.name}!`;
 	} else if (roll === CombatRoll.Wound) {
-		desc = `${player1.name} wounds ${player2.name}!`;
+		desc = `${player1.name} wounds ${player2.name} with ${player1.weapon.name}!`;
 	} else {
 		desc = `${player1.name} misses ${player2.name}!`;
 	}
