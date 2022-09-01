@@ -2,7 +2,7 @@
 
 ![Test](https://github.com/julioevm/react-royale/actions/workflows/test.yml/badge.svg)
 
-https://react-royale.herokuapp.com/
+https://react-royale.vercel.app/
 
 This is a react based client-side application that simulates a 'battle royale' type game.
 
@@ -29,6 +29,6 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Deployment
 
-We're using [Heroku](https://react-royale.herokuapp.com/) for the deployment and hosting of the app.
+We're using [Vercel](https://react-royale.vercel.app/) for the deployment and hosting of the app.
 
 Since it doesn't support PNPM I will still provide a yarn.lock file.
